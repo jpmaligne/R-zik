@@ -18,7 +18,7 @@ Nouvelle fonctionnalité = nouvelle branche :
 
 Pour revenir au master : `git checkout master` pour retourner sur ma_branch : `git checkout ma_branch`
 
-..note: Pensez à toujours pull sur le master avant de créer une branche afin d'avoir votre branch à jour avec les dernieres modifications.
+..note : Pensez à toujours pull sur le master avant de créer une branche afin d'avoir votre branch à jour avec les dernieres modifications.
 
 ### Ajout de modifications
 
@@ -32,7 +32,7 @@ Puis on pull le master :
 
 `git checkout master` puis `git pull`
 
-Enfin, retourner sur votre branch et poussez sur master :
+Enfin, retournez sur votre branch et poussez sur master :
 
 `git checkout ma_branch`
 

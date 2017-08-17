@@ -25,7 +25,7 @@ class UserController extends Controller
         //     ->findAll();
         /* @var $users User[] */
         // return $users;
-        return 3;
+        return new JsonResponse("3");
     }
 }
 

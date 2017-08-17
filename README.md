@@ -8,7 +8,7 @@
 
 `npm install`
 
-`php composer.phar install`
+`composer install`
 
 Verifier à tous moment l'état de votre git local : `git status`
 

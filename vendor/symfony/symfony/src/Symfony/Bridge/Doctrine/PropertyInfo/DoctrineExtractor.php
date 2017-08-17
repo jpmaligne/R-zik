@@ -50,17 +50,7 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
             return;
         }
 
-        $properties = array_merge($metadata->getFieldNames(), $metadata->getAssociationNames());
-
-        if ($metadata instanceof ClassMetadataInfo && class_exists('Doctrine\ORM\Mapping\Embedded') && $metadata->embeddedClasses) {
-            $properties = array_filter($properties, function ($property) {
-                return false === strpos($property, '.');
-            });
-
-            $properties = array_merge($properties, array_keys($metadata->embeddedClasses));
-        }
-
-        return $properties;
+        return array_merge($metadata->getFieldNames(), $metadata->getAssociationNames());
     }
 
     /**
@@ -113,10 +103,6 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
                 new Type($collectionKeyType),
                 new Type(Type::BUILTIN_TYPE_OBJECT, false, $class)
             ));
-        }
-
-        if ($metadata instanceof ClassMetadataInfo && class_exists('Doctrine\ORM\Mapping\Embedded') && isset($metadata->embeddedClasses[$property])) {
-            return array(new Type(Type::BUILTIN_TYPE_OBJECT, false, $metadata->embeddedClasses[$property]['class']));
         }
 
         if ($metadata->hasField($property)) {

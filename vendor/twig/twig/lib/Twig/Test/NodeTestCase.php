@@ -9,6 +9,9 @@
  * file that was distributed with this source code.
  */
 
+class_exists('Twig_Environment');
+class_exists('Twig_Node');
+
 use PHPUnit\Framework\TestCase;
 
 abstract class Twig_Test_NodeTestCase extends TestCase
@@ -71,5 +74,3 @@ abstract class Twig_Test_NodeTestCase extends TestCase
 }
 
 class_alias('Twig_Test_NodeTestCase', 'Twig\Test\NodeTestCase', false);
-class_exists('Twig_Environment');
-class_exists('Twig_Node');

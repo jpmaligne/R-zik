@@ -64,9 +64,12 @@ class ProjectServiceContainer extends Container
     }
 
     /**
-     * Gets the public 'Symfony\Component\DependencyInjection\Tests\Fixtures\Container33\Foo' shared service.
+     * Gets the 'Symfony\Component\DependencyInjection\Tests\Fixtures\Container33\Foo' service.
      *
-     * @return \Symfony\Component\DependencyInjection\Tests\Fixtures\Container33\Foo
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Component\DependencyInjection\Tests\Fixtures\Container33\Foo A Symfony\Component\DependencyInjection\Tests\Fixtures\Container33\Foo instance
      */
     protected function getSymfony_Component_DependencyInjection_Tests_Fixtures_Container33_FooService()
     {

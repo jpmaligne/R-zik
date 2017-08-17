@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+class_exists('Twig_Source');
+
 /**
  * Twig base exception.
  *
@@ -360,4 +362,3 @@ class Twig_Error extends Exception
 }
 
 class_alias('Twig_Error', 'Twig\Error\Error', false);
-class_exists('Twig_Source');

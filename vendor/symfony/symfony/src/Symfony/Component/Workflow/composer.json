@@ -2,7 +2,7 @@
     "name": "symfony/workflow",
     "type": "library",
     "description": "Symfony Workflow Component",
-    "keywords": ["workflow", "petrinet", "place", "transition", "statemachine", "state"],
+    "keywords": ["workflow", "petrinet", "place", "transition"],
     "homepage": "http://symfony.com",
     "license": "MIT",
     "authors": [

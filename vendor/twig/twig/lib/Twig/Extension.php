@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+class_exists('Twig_Environment');
+
 abstract class Twig_Extension implements Twig_ExtensionInterface
 {
     /**
@@ -66,4 +68,3 @@ abstract class Twig_Extension implements Twig_ExtensionInterface
 }
 
 class_alias('Twig_Extension', 'Twig\Extension\AbstractExtension', false);
-class_exists('Twig_Environment');

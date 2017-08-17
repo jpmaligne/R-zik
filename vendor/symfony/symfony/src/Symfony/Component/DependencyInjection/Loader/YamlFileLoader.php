@@ -121,11 +121,11 @@ class YamlFileLoader extends FileLoader
         // parameters
         if (isset($content['parameters'])) {
             if (!is_array($content['parameters'])) {
-                throw new InvalidArgumentException(sprintf('The "parameters" key should contain an array in %s. Check your YAML syntax.', $path));
+                throw new InvalidArgumentException(sprintf('The "parameters" key should contain an array in %s. Check your YAML syntax.', $resource));
             }
 
             foreach ($content['parameters'] as $key => $value) {
-                $this->container->setParameter($key, $this->resolveServices($value, $path, true));
+                $this->container->setParameter($key, $this->resolveServices($value, $resource, true));
             }
         }
 
@@ -136,7 +136,7 @@ class YamlFileLoader extends FileLoader
         $this->anonymousServicesCount = 0;
         $this->setCurrentDir(dirname($path));
         try {
-            $this->parseDefinitions($content, $path);
+            $this->parseDefinitions($content, $resource);
         } finally {
             $this->instanceof = array();
         }

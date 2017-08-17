@@ -1,0 +1,324 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+
+/**
+ * Client
+ *
+ * @ORM\Table(name="client")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
+ * @Serializer\ExclusionPolicy("all")
+ */
+class Client
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Expose
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="nom",type="string",length=255)
+     * @Serializer\Expose
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(name="dirigeant",type="string",length=255)
+     * @Serializer\Expose
+     */
+    private $dirigeant;
+
+    /**
+     * @ORM\Column(name="actuel", type="boolean")
+     */
+    private $actuel;
+
+    /**
+     * @ORM\Column(name="ancien_id", type="integer")
+     */
+    private $ancienId;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ClientRoleUser", mappedBy="client")
+     * @var integer $rolesUserClient
+     */
+    private $rolesUserClient;
+
+    /**
+     * @var string $adresseGenerique
+     * @ORM\Column(name="adresse_generique", type="string", length=255, nullable=false)
+     * @Serializer\Expose
+     */
+    private $adresseGenerique;
+
+    /**
+     * @var string $adresseCoupure
+     * @ORM\Column(name="adresse_coupure", type="string", length=255, nullable=false)
+     * @Serializer\Expose
+     */
+    private $adresseCoupure;
+
+    /**
+     * @ORM\Column(name="code_ape", type="string", length=255)
+     */
+    private $codeApe;
+
+    /**
+     * @ORM\Column(name="numero_siren", type="string", length=255)
+     */
+    private $numeroSiren;
+
+    /**
+     * @ORM\Column(name="capital", type="integer")
+     */
+    private $capital;
+
+    /**
+     * @ORM\Column(name="effectif", type="integer")
+     */
+    private $effectif;
+
+    /**
+     * @ORM\Column(name="date_creation", type="datetime")
+     */
+    private $dateCreation;
+
+    /**
+     * @ORM\Column(name="secteur_implantation", type="string", length=255)
+     */
+    private $secteurImplantation;
+
+    /**
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * @ORM\Column(name="commentaire", type="string", length=255)
+     */
+    private $commentaire;
+
+
+    /**
+     * Client constructor.
+     */
+    public function __construct()
+    {
+        $this->rolesUserClient = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Client
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set dirigeant
+     *
+     * @param string $dirigeant
+     *
+     * @return Client
+     */
+    public function setDirigeant($dirigeant)
+    {
+        $this->dirigeant = $dirigeant;
+
+        return $this;
+    }
+
+    /**
+     * Get dirigeant
+     *
+     * @return string
+     */
+    public function getDirigeant()
+    {
+        return $this->dirigeant;
+    }
+
+    /**
+     * Set actuel
+     *
+     * @param boolean $actuel
+     *
+     * @return Client
+     */
+    public function setActuel($actuel)
+    {
+        $this->actuel = $actuel;
+
+        return $this;
+    }
+
+    /**
+     * Get actuel
+     *
+     * @return boolean
+     */
+    public function getActuel()
+    {
+        return $this->actuel;
+    }
+
+    /**
+     * Set ancienId
+     *
+     * @param integer $ancienId
+     *
+     * @return Client
+     */
+    public function setAncienId($ancienId)
+    {
+        $this->ancienId = $ancienId;
+
+        return $this;
+    }
+
+    /**
+     * Get ancienId
+     *
+     * @return integer
+     */
+    public function getAncienId()
+    {
+        return $this->ancienId;
+    }
+
+    /**
+     * Add rolesUserClient
+     *
+     * @param \AppBundle\Entity\ClientRoleUser $rolesUserClient
+     *
+     * @return Client
+     */
+    public function addRolesUserClient(\AppBundle\Entity\ClientRoleUser $rolesUserClient)
+    {
+        $this->rolesUserClient[] = $rolesUserClient;
+
+        return $this;
+    }
+
+    /**
+     * Remove rolesUserClient
+     *
+     * @param \AppBundle\Entity\ClientRoleUser $rolesUserClient
+     */
+    public function removeRolesUserClient(\AppBundle\Entity\ClientRoleUser $rolesUserClient)
+    {
+        $this->rolesUserClient->removeElement($rolesUserClient);
+    }
+
+    /**
+     * Get rolesUserClient
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRolesUserClient()
+    {
+        return $this->rolesUserClient;
+    }
+
+    public function getReferent(){
+        /** @var ClientRoleUser $rolesUserClient */
+        foreach ($this->rolesUserClient as $roleUserClient){
+            if($roleUserClient->getRole() == "Referent"){
+                return $roleUserClient->getUser()->getNom()." ".$roleUserClient->getUser()->getPrenom();
+            }
+        }
+        return "pas de referent";
+    }
+
+    /**
+     * Set adresseGenerique
+     *
+     * @param string $adresseGenerique
+     *
+     * @return Client
+     */
+    public function setAdresseGenerique($adresseGenerique)
+    {
+        $this->adresseGenerique = $adresseGenerique;
+
+        return $this;
+    }
+
+    /**
+     * Get adresseGenerique
+     *
+     * @return string
+     */
+    public function getAdresseGenerique()
+    {
+        if($this->adresseGenerique == null || trim($this->adresseGenerique == ''))
+        {
+            return "non rensseigné";
+        }
+        return $this->adresseGenerique;
+    }
+
+    /**
+     * Set adresseCoupure
+     *
+     * @param string $adresseCoupure
+     *
+     * @return Client
+     */
+    public function setAdresseCoupure($adresseCoupure)
+    {
+        $this->adresseCoupure = $adresseCoupure;
+
+        return $this;
+    }
+
+    /**
+     * Get adresseCoupure
+     *
+     * @return string
+     */
+    public function getAdresseCoupure()
+    {
+        if($this->adresseCoupure == null || trim($this->adresseCoupure == ''))
+        {
+            return "non rensseigné";
+        }
+        return $this->adresseCoupure;
+    }
+}

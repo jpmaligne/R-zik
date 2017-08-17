@@ -71,8 +71,7 @@ CHANGELOG
  * Deprecated using core form types without dependencies as services
  * Added `Symfony\Component\HttpHernel\DataCollector\RequestDataCollector::onKernelResponse()`
  * Added `Symfony\Bundle\FrameworkBundle\DataCollector\RequestDataCollector`
- * The `framework.serializer.cache` option and the service `serializer.mapping.cache.apc` have been
-   deprecated. APCu should now be automatically used when available.
+ * Deprecated service `serializer.mapping.cache.apc` (use `serializer.mapping.cache.doctrine.apc` instead)
 
 3.0.0
 -----

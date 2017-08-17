@@ -13,8 +13,11 @@ namespace Symfony\Bundle\FrameworkBundle\CacheWarmer;
 
 use Doctrine\Common\Annotations\AnnotationException;
 use Psr\Cache\CacheItemPoolInterface;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\PhpArrayAdapter;
+use Symfony\Component\Cache\Adapter\ProxyAdapter;
+use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 use Symfony\Component\Validator\Mapping\Cache\Psr6Cache;
 use Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory;
 use Symfony\Component\Validator\Mapping\Loader\LoaderChain;
@@ -28,9 +31,11 @@ use Symfony\Component\Validator\ValidatorBuilderInterface;
  *
  * @author Titouan Galopin <galopintitouan@gmail.com>
  */
-class ValidatorCacheWarmer extends AbstractPhpFileCacheWarmer
+class ValidatorCacheWarmer implements CacheWarmerInterface
 {
     private $validatorBuilder;
+    private $phpArrayFile;
+    private $fallbackPool;
 
     /**
      * @param ValidatorBuilderInterface $validatorBuilder
@@ -39,43 +44,64 @@ class ValidatorCacheWarmer extends AbstractPhpFileCacheWarmer
      */
     public function __construct(ValidatorBuilderInterface $validatorBuilder, $phpArrayFile, CacheItemPoolInterface $fallbackPool)
     {
-        parent::__construct($phpArrayFile, $fallbackPool);
         $this->validatorBuilder = $validatorBuilder;
+        $this->phpArrayFile = $phpArrayFile;
+        if (!$fallbackPool instanceof AdapterInterface) {
+            $fallbackPool = new ProxyAdapter($fallbackPool);
+        }
+        $this->fallbackPool = $fallbackPool;
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function doWarmUp($cacheDir, ArrayAdapter $arrayAdapter)
+    public function warmUp($cacheDir)
     {
         if (!method_exists($this->validatorBuilder, 'getLoaders')) {
-            return false;
+            return;
         }
+
+        $adapter = new PhpArrayAdapter($this->phpArrayFile, $this->fallbackPool);
+        $arrayPool = new ArrayAdapter(0, false);
 
         $loaders = $this->validatorBuilder->getLoaders();
-        $metadataFactory = new LazyLoadingMetadataFactory(new LoaderChain($loaders), new Psr6Cache($arrayAdapter));
+        $metadataFactory = new LazyLoadingMetadataFactory(new LoaderChain($loaders), new Psr6Cache($arrayPool));
 
-        foreach ($this->extractSupportedLoaders($loaders) as $loader) {
-            foreach ($loader->getMappedClasses() as $mappedClass) {
-                try {
-                    if ($metadataFactory->hasMetadataFor($mappedClass)) {
-                        $metadataFactory->getMetadataFor($mappedClass);
+        spl_autoload_register(array($adapter, 'throwOnRequiredClass'));
+        try {
+            foreach ($this->extractSupportedLoaders($loaders) as $loader) {
+                foreach ($loader->getMappedClasses() as $mappedClass) {
+                    try {
+                        if ($metadataFactory->hasMetadataFor($mappedClass)) {
+                            $metadataFactory->getMetadataFor($mappedClass);
+                        }
+                    } catch (\ReflectionException $e) {
+                        // ignore failing reflection
+                    } catch (AnnotationException $e) {
+                        // ignore failing annotations
                     }
-                } catch (\ReflectionException $e) {
-                    // ignore failing reflection
-                } catch (AnnotationException $e) {
-                    // ignore failing annotations
                 }
             }
+        } finally {
+            spl_autoload_unregister(array($adapter, 'throwOnRequiredClass'));
         }
 
-        return true;
+        $values = $arrayPool->getValues();
+        $adapter->warmUp(array_filter($values));
+
+        foreach ($values as $k => $v) {
+            $item = $this->fallbackPool->getItem($k);
+            $this->fallbackPool->saveDeferred($item->set($v));
+        }
+        $this->fallbackPool->commit();
     }
 
-    protected function warmUpPhpArrayAdapter(PhpArrayAdapter $phpArrayAdapter, array $values)
+    /**
+     * {@inheritdoc}
+     */
+    public function isOptional()
     {
-        // make sure we don't cache null values
-        parent::warmUpPhpArrayAdapter($phpArrayAdapter, array_filter($values));
+        return true;
     }
 
     /**

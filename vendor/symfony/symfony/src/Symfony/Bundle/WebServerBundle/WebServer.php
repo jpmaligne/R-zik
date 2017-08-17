@@ -13,6 +13,7 @@ namespace Symfony\Bundle\WebServerBundle;
 
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\Process\Exception\RuntimeException;
 
 /**
@@ -150,11 +151,11 @@ class WebServer
             throw new \RuntimeException('Unable to find the PHP binary.');
         }
 
-        $process = new Process(array($binary, '-S', $config->getAddress(), $config->getRouter()));
-        $process->setWorkingDirectory($config->getDocumentRoot());
-        $process->setTimeout(null);
+        $builder = new ProcessBuilder(array($binary, '-S', $config->getAddress(), $config->getRouter()));
+        $builder->setWorkingDirectory($config->getDocumentRoot());
+        $builder->setTimeout(null);
 
-        return $process;
+        return $builder->getProcess();
     }
 
     private function getDefaultPidFile()

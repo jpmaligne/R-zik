@@ -23,7 +23,7 @@ trait ApcuTrait
 {
     public static function isSupported()
     {
-        return function_exists('apcu_fetch') && ini_get('apc.enabled');
+        return function_exists('apcu_fetch') && ini_get('apc.enabled') && !('cli' === PHP_SAPI && !ini_get('apc.enable_cli'));
     }
 
     private function init($namespace, $defaultLifetime, $version)
@@ -52,7 +52,7 @@ trait ApcuTrait
     protected function doFetch(array $ids)
     {
         try {
-            return apcu_fetch($ids) ?: array();
+            return apcu_fetch($ids);
         } catch (\Error $e) {
             throw new \ErrorException($e->getMessage(), $e->getCode(), E_ERROR, $e->getFile(), $e->getLine());
         }
@@ -71,7 +71,7 @@ trait ApcuTrait
      */
     protected function doClear($namespace)
     {
-        return isset($namespace[0]) && class_exists('APCuIterator', false) && ('cli' !== PHP_SAPI || ini_get('apc.enable_cli'))
+        return isset($namespace[0]) && class_exists('APCuIterator', false)
             ? apcu_delete(new \APCuIterator(sprintf('/^%s/', preg_quote($namespace, '/')), APC_ITER_KEY))
             : apcu_clear_cache();
     }
@@ -94,11 +94,7 @@ trait ApcuTrait
     protected function doSave(array $values, $lifetime)
     {
         try {
-            if (false === $failures = apcu_store($values, null, $lifetime)) {
-                $failures = $values;
-            }
-
-            return array_keys($failures);
+            return array_keys(apcu_store($values, null, $lifetime));
         } catch (\Error $e) {
         } catch (\Exception $e) {
         }

@@ -1,0 +1,9 @@
+.wrapper {
+  background: #E8CBC0; }
+  .wrapper p {
+    font-size: 15px;
+    color: fff;
+    font-family: "Times New Roman"; }
+  .wrapper .sass textarea {
+    width: 150px;
+    border-radius: 20px; }

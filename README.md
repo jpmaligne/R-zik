@@ -6,6 +6,10 @@
 
 `git clone https://github.com/jpmaligne/R-zik.git`
 
+`npm install`
+
+`php composer.phar install`
+
 Verifier à tous moment l'état de votre git local : `git status`
 
 ### Gestion des branch

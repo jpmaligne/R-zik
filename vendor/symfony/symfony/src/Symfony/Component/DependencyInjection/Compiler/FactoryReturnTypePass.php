@@ -81,7 +81,7 @@ class FactoryReturnTypePass implements CompilerPassInterface
                 $class = $factory[0];
             }
 
-            if (!$m = $container->getReflectionClass($class, false)) {
+            if (!$m = $container->getReflectionClass($class)) {
                 return;
             }
             try {

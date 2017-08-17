@@ -65,14 +65,10 @@ class ResolveParameterPlaceHoldersPass extends AbstractRecursivePass
             if (isset($changes['file'])) {
                 $value->setFile($this->bag->resolveValue($value->getFile()));
             }
+            $value->setProperties($this->bag->resolveValue($value->getProperties()));
+            $value->setMethodCalls($this->bag->resolveValue($value->getMethodCalls()));
         }
 
-        $value = parent::processValue($value, $isRoot);
-
-        if ($value && is_array($value)) {
-            $value = array_combine($this->bag->resolveValue(array_keys($value)), $value);
-        }
-
-        return $value;
+        return parent::processValue($value, $isRoot);
     }
 }

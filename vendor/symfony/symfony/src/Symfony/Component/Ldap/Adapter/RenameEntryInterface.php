@@ -5,9 +5,9 @@ namespace Symfony\Component\Ldap\Adapter;
 use Symfony\Component\Ldap\Entry;
 
 /**
- * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
+ * @deprecated This interface will be deprecated in 4.0, and merged with `EntryManagerInterface`
  *
- * @deprecated since version 3.3, will be merged with {@link EntryManagerInterface} in 4.0.
+ * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
  */
 interface RenameEntryInterface
 {

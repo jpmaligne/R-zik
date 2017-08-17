@@ -25,7 +25,6 @@ class ClassExistenceResource implements SelfCheckingResourceInterface, \Serializ
     private $exists;
 
     private static $autoloadLevel = 0;
-    private static $autoloadedClass;
     private static $existsCache = array();
 
     /**
@@ -58,8 +57,6 @@ class ClassExistenceResource implements SelfCheckingResourceInterface, \Serializ
 
     /**
      * {@inheritdoc}
-     *
-     * @throws \ReflectionException when a parent class/interface/trait is not found
      */
     public function isFresh($timestamp)
     {
@@ -71,13 +68,12 @@ class ClassExistenceResource implements SelfCheckingResourceInterface, \Serializ
             if (!self::$autoloadLevel++) {
                 spl_autoload_register(__CLASS__.'::throwOnRequiredClass');
             }
-            $autoloadedClass = self::$autoloadedClass;
-            self::$autoloadedClass = $this->resource;
 
             try {
                 $exists = class_exists($this->resource) || interface_exists($this->resource, false) || trait_exists($this->resource, false);
+            } catch (\ReflectionException $e) {
+                $exists = false;
             } finally {
-                self::$autoloadedClass = $autoloadedClass;
                 if (!--self::$autoloadLevel) {
                     spl_autoload_unregister(__CLASS__.'::throwOnRequiredClass');
                 }
@@ -116,10 +112,7 @@ class ClassExistenceResource implements SelfCheckingResourceInterface, \Serializ
      */
     private static function throwOnRequiredClass($class)
     {
-        if (self::$autoloadedClass === $class) {
-            return;
-        }
-        $e = new \ReflectionException("Class $class not found");
+        $e = new \ReflectionException("Class $class does not exist");
         $trace = $e->getTrace();
         $autoloadFrame = array(
             'function' => 'spl_autoload_call',
@@ -144,18 +137,6 @@ class ClassExistenceResource implements SelfCheckingResourceInterface, \Serializ
                 case 'property_exists':
                 case 'is_callable':
                     return;
-            }
-
-            $props = array(
-                'file' => $trace[$i]['file'],
-                'line' => $trace[$i]['line'],
-                'trace' => array_slice($trace, 1 + $i),
-            );
-
-            foreach ($props as $p => $v) {
-                $r = new \ReflectionProperty('Exception', $p);
-                $r->setAccessible(true);
-                $r->setValue($e, $v);
             }
         }
 

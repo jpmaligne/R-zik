@@ -37,8 +37,7 @@ class Filesystem
      */
     public function copy($originFile, $targetFile, $overwriteNewerFiles = false)
     {
-        $originIsLocal = stream_is_local($originFile) || 0 === stripos($originFile, 'file://');
-        if ($originIsLocal && !is_file($originFile)) {
+        if (stream_is_local($originFile) && !is_file($originFile)) {
             throw new FileNotFoundException(sprintf('Failed to copy "%s" because file does not exist.', $originFile), 0, null, $originFile);
         }
 
@@ -69,13 +68,11 @@ class Filesystem
                 throw new IOException(sprintf('Failed to copy "%s" to "%s".', $originFile, $targetFile), 0, null, $originFile);
             }
 
-            if ($originIsLocal) {
-                // Like `cp`, preserve executable permission bits
-                @chmod($targetFile, fileperms($targetFile) | (fileperms($originFile) & 0111));
+            // Like `cp`, preserve executable permission bits
+            @chmod($targetFile, fileperms($targetFile) | (fileperms($originFile) & 0111));
 
-                if ($bytesCopied !== $bytesOrigin = filesize($originFile)) {
-                    throw new IOException(sprintf('Failed to copy the whole content of "%s" to "%s" (%g of %g bytes copied).', $originFile, $targetFile, $bytesCopied, $bytesOrigin), 0, null, $originFile);
-                }
+            if (stream_is_local($originFile) && $bytesCopied !== ($bytesOrigin = filesize($originFile))) {
+                throw new IOException(sprintf('Failed to copy the whole content of "%s" to "%s" (%g of %g bytes copied).', $originFile, $targetFile, $bytesCopied, $bytesOrigin), 0, null, $originFile);
             }
         }
     }
@@ -279,13 +276,6 @@ class Filesystem
         }
 
         if (true !== @rename($origin, $target)) {
-            if (is_dir($origin)) {
-                // See https://bugs.php.net/bug.php?id=54097 & http://php.net/manual/en/function.rename.php#113943
-                $this->mirror($origin, $target, null, array('override' => $overwrite, 'delete' => $overwrite));
-                $this->remove($origin);
-
-                return;
-            }
             throw new IOException(sprintf('Cannot rename "%s" to "%s".', $origin, $target), 0, null, $target);
         }
     }

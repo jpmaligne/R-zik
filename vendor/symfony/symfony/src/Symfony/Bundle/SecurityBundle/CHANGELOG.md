@@ -7,7 +7,7 @@ CHANGELOG
  * Deprecated instantiating `UserPasswordEncoderCommand` without its constructor
    arguments fully provided.
  * Deprecated `UserPasswordEncoderCommand::getContainer()` and relying on the
-  `ContainerAwareCommand` sub class or `ContainerAwareInterface` implementation for this command.
+  `ContainerAwareInterface` interface for this command.
  * Deprecated the `FirewallMap::$map` and `$container` properties.
  * [BC BREAK] Keys of the `users` node for `in_memory` user provider are no longer normalized.
  * deprecated `FirewallContext::getListeners()`

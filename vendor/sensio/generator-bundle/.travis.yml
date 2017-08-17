@@ -1,6 +1,5 @@
 language: php
 
-dist: trusty
 sudo: false
 
 cache:
@@ -12,7 +11,6 @@ matrix:
     include:
         - php: hhvm
         - php: 5.3
-          dist: precise
         - php: 5.4
         - php: 5.5
         - php: 5.6

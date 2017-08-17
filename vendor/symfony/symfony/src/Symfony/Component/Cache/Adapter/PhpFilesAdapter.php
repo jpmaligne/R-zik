@@ -18,13 +18,6 @@ class PhpFilesAdapter extends AbstractAdapter
 {
     use PhpFilesTrait;
 
-    /**
-     * @param string      $namespace
-     * @param int         $defaultLifetime
-     * @param string|null $directory
-     *
-     * @throws CacheException if OPcache is not enabled
-     */
     public function __construct($namespace = '', $defaultLifetime = 0, $directory = null)
     {
         if (!static::isSupported()) {

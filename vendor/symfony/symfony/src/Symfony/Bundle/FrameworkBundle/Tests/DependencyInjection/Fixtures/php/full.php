@@ -13,9 +13,6 @@ $container->loadFromExtension('framework', array(
     'esi' => array(
         'enabled' => true,
     ),
-    'ssi' => array(
-        'enabled' => true,
-    ),
     'profiler' => array(
         'only_exceptions' => true,
         'enabled' => false,

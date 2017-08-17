@@ -1,0 +1,140 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+
+/**
+ * ClientRoleUser
+ *
+ * @ORM\Table(name="client_role_user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRoleUserRepository")
+ */
+class ClientRoleUser
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=255)
+     */
+    private $role;
+
+    /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="ClientRoleUser")
+     * @ORM\JoinColumn(name="id_client", referencedColumnName="id")
+     */
+    private $client;
+
+    /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="ClientRoleUser")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @var boolean adresseCoupure
+     * @ORM\Column(name="adresse_coupure", type="boolean", nullable=false)
+     * @Serializer\Expose
+     */
+    private $adresseCoupure;
+
+    /**
+     * @var boolean adresseGenerique
+     * @ORM\Column(name="adresse_generique", type="boolean", nullable=false)
+     * @Serializer\Expose
+     */
+    private $adresseGenerique;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     *
+     * @return ClientRoleUser
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \AppBundle\Entity\Client $client
+     *
+     * @return ClientRoleUser
+     */
+    public function setClient(\AppBundle\Entity\Client $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return ClientRoleUser
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+}

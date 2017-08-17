@@ -1,0 +1,56 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * informationPerso
+ *
+ * @ORM\Table(name="information_perso")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\informationPersoRepository")
+ */
+class informationPerso
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telFixe", type="string", length=255)
+     */
+    private $telFixe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telMobile", type="string", length=255)
+     */
+    private $telMobile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mail", type="string", length=255)
+     */
+    private $mail;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+

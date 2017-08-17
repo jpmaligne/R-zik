@@ -9,6 +9,9 @@
  * file that was distributed with this source code.
  */
 
+class_exists('Twig_Parser');
+class_exists('Twig_Token');
+
 /**
  * Interface implemented by token parsers.
  *
@@ -39,5 +42,3 @@ interface Twig_TokenParserInterface
 }
 
 class_alias('Twig_TokenParserInterface', 'Twig\TokenParser\TokenParserInterface', false);
-class_exists('Twig_Parser');
-class_exists('Twig_Token');

@@ -5,6 +5,7 @@ import { HttpModule }    from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { UsersComponent } from './components/users.component';
+import { LoginComponent } from './components/login.component';
 
 @NgModule({
   imports: [
@@ -14,12 +15,17 @@ import { UsersComponent } from './components/users.component';
       {
         path: 'users',
         component: UsersComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
       }
     ])
   ],
   declarations: [
     AppComponent,
-    UsersComponent
+    UsersComponent,
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

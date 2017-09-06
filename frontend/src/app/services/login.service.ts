@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class UsersService{
+export class LoginService{
 
     results: string[];
     private headers = new Headers({'Content-Type': 'application/json'});
@@ -13,7 +13,7 @@ export class UsersService{
 
     getId(): Promise<string[]> {
         return this.http
-                    .get(this.baseUrl+"users")
+                    .get(this.baseUrl+"login")
                     .toPromise()
                     .then(response => response.json())
                     .catch(this.handleError);

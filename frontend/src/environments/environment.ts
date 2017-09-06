@@ -3,6 +3,9 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+// Ceci est le fichier de conf. A modifier pour s'adapter à votre environnement.
+
 export const environment = {
-  production: false
+  production: false,
+  apiEndpoint: 'http://localhost/projects/R-zik/web/'
 };

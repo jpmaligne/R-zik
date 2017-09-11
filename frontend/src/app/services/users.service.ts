@@ -12,7 +12,7 @@ export class UsersService{
     private url = environment.apiEndpoint + "users";            // Use url in conf file
     constructor(private http: Http) {}
 
-    getId(): Promise<string[]> {
+    getUsers(): Promise<string[]> {
         return this.http
                     .get(this.url)
                     .toPromise()

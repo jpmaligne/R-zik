@@ -25,6 +25,7 @@ export class BaseComponent implements OnInit {
       }
     });
 
+    //We load css after js is loaded
     var stylesheet = document.createElement('link');
     stylesheet.href = '../../assets/soundmanager2/styles/bar-ui.css';
     stylesheet.rel = 'stylesheet';

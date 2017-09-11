@@ -1,3 +1,15 @@
 <h1>
-    Id des utlisateurs enregistrés : {{id}}
+    Liste des users
 </h1>
+<table>
+    <tr>
+        <th>Lastname</th>
+        <th>Firstname</th>
+        <th>Mail</th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.email}}</td>
+    </tr>
+</table>

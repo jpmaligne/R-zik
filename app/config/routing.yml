@@ -1,6 +1,6 @@
-user:
+users:
     type: rest
     resource: '@AppBundle/Controller/UserController.php'
-login:
+auth-tokens:
     type: rest
-    resource: '@AppBundle/Controller/LoginController.php'
+    resource: '@AppBundle/Controller/AuthTokenController.php'

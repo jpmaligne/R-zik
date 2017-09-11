@@ -9,9 +9,9 @@ import { URLSearchParams, Response, Http, Headers } from '@angular/http';
 })
 export class UsersComponent {
   title = 'users';
-  id;
+  users;
 
   constructor(private usersService: UsersService) {
-    usersService.getId().then(data => this.id = data);
+    usersService.getUsers().then(data => this.users = data);
   }
 }

@@ -1,5 +1,19 @@
 # R-zik
 
+## Routing (pour l'instant)
+
+|        Nom        |         URL        |  Verbe |           Description             |
+|:-----------------:|:------------------:|:------:|:---------------------------------:|
+| get_users         |  /users            |  GET   |    List tous les users            |
+| get_user          |  /users/{id}       |  GET   |    List un user                   |
+| post_users        |  /users            |  POST  |    Créé un user                   |
+| update_user       |  /users/{id}       |  PUT   |    Modifie un user                |
+| patch_user        |  /users/{id}       | PATCH  |    Modifie un user                |
+| remove_user       |  /users/{id}       | DELETE |    Delete un user                 |
+| post_auth_tokens  |  /auth-tokens      |  POST  |    Créé un token de connexion     |
+| remove_auth_token |  /auth-tokens/{id} | DELETE |    Delete un token de connexion   |
+| get_auth_tokens   |  /auth-tokens      |  GET   |    List tous les tokens           |
+
 ## Commandes Git
 
 ### Installation

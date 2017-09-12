@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../services/login.service';
+import { AuthService } from '../services/auth.service';
 import { URLSearchParams, Response, Http, Headers } from '@angular/http';
 
 @Component({
   templateUrl: '../views/login.component.html',
   //styleUrls: ['../styles/login.component.css'],
-  providers: [LoginService]
+  providers: [AuthService]
 })
 export class LoginComponent {
   title = 'login';
-  id;
+  login: string = '';
+  password: string = '';
+  response: string[] = [];
 
-  constructor(private loginService: LoginService) {
-    loginService.getId().then(data => this.id = data);
+  constructor(private authService: AuthService) {
+  }
+  private doLogin() {
+    this.authService.getAuthToken(this.login, this.password)
+                    .then((response) => localStorage.setItem('auth-tokens', response['value']));
   }
 }

@@ -56,3 +56,8 @@ services:
         class: AppBundle\Security\AuthTokenAuthenticator
         arguments: ["@security.http_utils"]
         public: false
+    
+    user_service:
+        class: AppBundle\Services\UserService
+        arguments: ["@auth_token_repository", "@user_repository", "@auth_token_authenticator", "@doctrine.orm.entity_manager"]
+        public: false

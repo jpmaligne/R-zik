@@ -88,7 +88,7 @@ class AuthTokenAuthenticator implements SimplePreAuthenticatorInterface, Authent
     /**
     * Vérifie la validité du token
     */
-    private function isTokenValid($authToken)
+    public function isTokenValid($authToken)
     {
         return (time() - $authToken->getCreatedAt()->getTimestamp()) < self::TOKEN_VALIDITY_DURATION;
     }

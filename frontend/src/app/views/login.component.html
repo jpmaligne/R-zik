@@ -1,3 +1,6 @@
 <h1>
-    Veuillez vous identifier : {{id}}
+    Veuillez vous identifier :
 </h1>
+Login : <input [(ngModel)]="login" />
+Password : <input [(ngModel)]="password" />
+<button (click)="doLogin()">Login</button>

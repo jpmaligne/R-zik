@@ -9,6 +9,7 @@ use FOS\RestBundle\Controller\Annotations as Rest; // alias pour toutes les anno
 use AppBundle\Form\Type\CredentialsType;
 use AppBundle\Entity\AuthToken;
 use AppBundle\Entity\Credentials;
+use AppBundle\Security\AuthTokenAuthenticator;
 
 class AuthTokenController extends Controller
 {
@@ -34,6 +35,13 @@ class AuthTokenController extends Controller
 
         if (!$user) { // L'utilisateur n'existe pas
             return $this->invalidCredentials();
+        }
+
+        //Si l'utilisateur existe, on verifie ses token et leurs validité, on supprime les anciens tokens
+        $userService = $this->get('user_service');
+        $authToken = $userService->clearOutdatedTokens($user->getId());
+        if(!empty($authToken)) {
+            return $authToken;
         }
 
         $encoder = $this->get('security.password_encoder');
@@ -74,9 +82,31 @@ class AuthTokenController extends Controller
             throw new \Symfony\Component\HttpKernel\Exception\BadRequestHttpException();
         }
     }
-    
+
+    /**
+    * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"auth-token"})
+    * @Rest\Get("/auth-tokens")
+    */
+   public function getAuthTokensAction(Request $request)
+   {
+       /** @var EntityManager $em */
+       $em = $this->get('doctrine.orm.entity_manager');
+       $authTokens = $em->getRepository('AppBundle:AuthToken')
+                        ->findBy(['value' => $request->headers->get('x-auth-token')]);
+       if(empty($authTokens))
+       {
+           return $this->invalidCredentials();
+       }
+       return $authTokens;
+   }
+
     private function invalidCredentials()
     {
         return \FOS\RestBundle\View\View::create(['message' => 'Invalid credentials'], Response::HTTP_BAD_REQUEST);
+    }
+
+    private function userNotFound()
+    {
+        return \FOS\RestBundle\View\View::create(['message' => 'User not found'], Response::HTTP_NOT_FOUND);
     }
 }

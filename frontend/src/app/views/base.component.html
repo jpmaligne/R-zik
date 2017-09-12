@@ -1,7 +1,11 @@
 
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="header" style="background: black; text-align: center;">
+<div class="header" style="background: #fff; text-align: center; color: black;">
   <span>Ceci est le header</span>
+  <div *ngIf="currentUser">
+    <span>Welcome {{ currentUser.firstname }}</span>
+    <button (click)="disconnect()">Disconnect</button>
+  </div>
 </div>
 <div style="text-align:center">
   <h1>

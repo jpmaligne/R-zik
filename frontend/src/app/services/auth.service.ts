@@ -18,8 +18,7 @@ export class AuthService {
                     .catch(this.errorHandler);
   }
   getAuthToken(login, password): Promise<any> {
-    var options = this.initOptionHeader();
-    return this.http.post(this.authTokenUrl , { 'login': login, 'password': password }, options)
+    return this.http.post(this.authTokenUrl , { 'login': login, 'password': password })
                     .toPromise()
                     .then(response => response.json())
                     .catch(this.errorHandler);

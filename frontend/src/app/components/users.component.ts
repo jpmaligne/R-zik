@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { UsersService } from '../services/users.service';
-import { AuthService } from '../services/auth.service';
+import { UsersService, AuthService } from '../services/index';
 import { URLSearchParams, Response, Http, Headers } from '@angular/http';
 
 @Component({

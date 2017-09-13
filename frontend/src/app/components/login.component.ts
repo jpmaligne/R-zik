@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/index';
 import { URLSearchParams, Response, Http, Headers } from '@angular/http';
 
 @Component({
@@ -17,6 +17,9 @@ export class LoginComponent {
   }
   private doLogin() {
     this.authService.getAuthToken(this.login, this.password)
-                    .then((response) => localStorage.setItem('auth-tokens', response['value']));
+                    .then((response) => {
+                      localStorage.setItem('auth-tokens', response['value']);
+                      location.reload();
+                    });
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/index';
 import { User } from '../models/user';
 
 declare var soundManager: any;
@@ -40,9 +40,11 @@ export class BaseComponent implements OnInit {
   disconnect() {
     var that = this;
     this.authService.getAuthUserByToken()
-                                .then((retour) => {
-                                    that.tokenId = retour[0]['id'];
-                                    this.authService.removeAuthToken(this.tokenId);
-                                })
+                    .then((retour) => {
+                        that.tokenId = retour[0]['id'];
+                        this.authService.removeAuthToken(this.tokenId);
+                        delete this.currentUser;
+                        //location.reload();
+                    })
   }
 }

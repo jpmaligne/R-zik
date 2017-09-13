@@ -4,15 +4,16 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * User
  *
- * @ORM\Table(name="`users`",
- *     uniqueConstraints={@ORM\UniqueConstraint(name="users_email_unique",columns={"email"})}
- *     )
+ * @ORM\Table(name="`users`")
+ * @UniqueEntity("email")
+ * @UniqueEntity("login")
  * @ORM\Entity()
  */
 class User implements UserInterface
@@ -30,14 +31,21 @@ class User implements UserInterface
     * @Groups({"user", "auth-token"})
     */
     public $firstname;
-    
+
     /**
     * @ORM\Column(type="string")
     */
     protected $lastname;
-    
+
     /**
     * @ORM\Column(type="string")
+    * @Groups({"user", "auth-token"})
+    */
+    public $login;
+
+    /**
+    * @ORM\Column(type="string")
+    * @Groups({"user", "auth-token"})
     */
     protected $email;
     
@@ -122,7 +130,17 @@ class User implements UserInterface
     {
         return $this->email;
     }
-    
+
+    public function setLogin($login)
+    {
+        $this->login = $login;
+    }
+
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
     public function eraseCredentials()
     {
         // Suppression des données sensibles

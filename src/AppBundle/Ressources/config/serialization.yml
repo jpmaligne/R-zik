@@ -6,6 +6,8 @@ AppBundle\Entity\User:
             groups: ['user', 'preference', 'auth-token']
         lastname:
             groups: ['user', 'preference', 'auth-token']
+        login:
+            groups: ['user', 'preference', 'auth-token']
         email:
             groups: ['user', 'preference', 'auth-token']
         preferences:

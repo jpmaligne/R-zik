@@ -8,6 +8,9 @@ AppBundle\Entity\User:
         lastname:
             - NotBlank: ~
             - Type: string
+        login:
+            - NotBlank: ~
+            - Type: string
         email:
             - NotBlank: ~
             - Email: ~

@@ -29,11 +29,16 @@ class AuthTokenController extends Controller
         }
 
         $em = $this->get('doctrine.orm.entity_manager');
+        
+        $login = $credentials->getLogin();
+        $user = $em->getRepository('AppBundle:User')      // Recherche par Email
+                    ->findOneByEmail($login);
+        if(!$user) {
+            $user = $em->getRepository('AppBundle:User')  // Recherche par Login
+                       ->findOneByLogin($login);
+        }
 
-        $user = $em->getRepository('AppBundle:User')
-                   ->findOneByEmail($credentials->getLogin());
-
-        if (!$user) { // L'utilisateur n'existe pas
+        if (!$user) {                                     // L'utilisateur n'existe pas
             return $this->invalidCredentials();
         }
 

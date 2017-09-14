@@ -28,7 +28,7 @@ export class BaseComponent implements OnInit {
     stylesheet.type = 'text/css';
     document.getElementsByTagName('head')[0].appendChild(stylesheet);
   }
-  title = 'R-zik';
+  title = 'RZik - Go ahead ! Everysing is in the bass';
 
   getUserByToken() {
     var that = this;

@@ -5,3 +5,4 @@ interface NodeModule {
 }
 declare var soundManager: any;
 declare var sm2BarPlayers: any;
+declare var jQuery: any;

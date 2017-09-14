@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule }   from '@angular/router';
 import { HttpModule }    from '@angular/http';
 import { BaseComponent } from './components/base.component';
+import { BaseComponent2 } from './components/base.component2';
 import { UsersComponent } from './components/users.component';
 import { LoginComponent } from './components/login.component';
 import { FormsModule } from '@angular/forms';
@@ -26,11 +27,14 @@ import { CommonModule } from '@angular/common';
     ])
   ],
   declarations: [
-    BaseComponent,
+    // BaseComponent,
+    BaseComponent2,
     UsersComponent,
     LoginComponent
   ],
   providers: [],
-  bootstrap: [BaseComponent]
+  bootstrap: [BaseComponent2]
 })
-export class AppModule { }
+export class AppModule { 
+
+}

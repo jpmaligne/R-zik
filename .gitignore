@@ -16,7 +16,7 @@
 /vendor/
 /node_modules/
 #/web/bundles/
-#/.idea/
+.idea/
 #/app/config
 
 

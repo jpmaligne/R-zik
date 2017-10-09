@@ -18,15 +18,11 @@ export class BaseComponent2 implements OnInit {
     constructor(private authService: AuthService) { };
     title = 'RZik - Go ahead ! Everysing is in the bass';
     ngOnInit(){
-        setTimeout(this.hideURLbar(), 0);
         console.log('init');
         if(localStorage.getItem('auth-tokens')) {
           this.getUserByToken();
         }
         new UISearch(document.getElementById('sb-search'));
-    }
-    hideURLbar() {
-        window.scrollTo(0, 1);
     }
 
 

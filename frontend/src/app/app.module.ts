@@ -8,7 +8,9 @@ import { UsersComponent } from './components/users.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';  
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
@@ -26,6 +28,10 @@ import { HomeComponent } from './home/home.component';
         component: UsersComponent
       },
       {
+        path: 'user/:id',
+        component: UserComponent
+      },
+      {
         path: 'login',
         component: LoginComponent
       }
@@ -36,7 +42,9 @@ import { HomeComponent } from './home/home.component';
     BaseComponent2,
     UsersComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent,
+    RegisterComponent
   ],
   providers: [],
   bootstrap: [BaseComponent2]

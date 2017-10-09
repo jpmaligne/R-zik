@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsersService, AuthService } from '../services/index';
 import { URLSearchParams, Response, Http, Headers } from '@angular/http';
 
@@ -7,7 +7,7 @@ import { URLSearchParams, Response, Http, Headers } from '@angular/http';
   styleUrls: ['../styles/users.component.css'],
   providers: [UsersService, AuthService]
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit{
   title = 'users';
   users;
   currentUser: string = '';
@@ -15,5 +15,8 @@ export class UsersComponent {
   constructor(private usersService: UsersService, private authService: AuthService) {
     this.authService.getAuthUserByToken().then((response) => this.currentUser = response[0].user);
     this.usersService.getUsers().then((response) => this.users = response);
+  }
+
+  ngOnInit() {
   }
 }

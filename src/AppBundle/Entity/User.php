@@ -34,6 +34,7 @@ class User implements UserInterface
 
     /**
     * @ORM\Column(type="string")
+    * @Groups({"user", "auth-token"})
     */
     protected $lastname;
 

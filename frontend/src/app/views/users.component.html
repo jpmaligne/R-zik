@@ -1,4 +1,3 @@
-Utilisateur connecté: {{ currentUser.firstname }}
 <h1>
     Liste des users
 </h1>
@@ -12,5 +11,6 @@ Utilisateur connecté: {{ currentUser.firstname }}
         <td>{{ user.lastname }}</td>
         <td>{{ user.firstname }}</td>
         <td>{{ user.email}}</td>
+        <td><a href="/user/{{ user.id}}">See profile</a></td>
     </tr>
 </table>

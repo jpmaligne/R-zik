@@ -19,16 +19,15 @@ export class BaseComponent2 implements OnInit {
     title = 'RZik - Go ahead ! Everysing is in the bass';
     ngOnInit(){
         setTimeout(this.hideURLbar(), 0);
-        new UISearch(document.getElementById('sb-search'))
+        console.log('init');
+        if(localStorage.getItem('auth-tokens')) {
+          this.getUserByToken();
+        }
+        new UISearch(document.getElementById('sb-search'));
     }
     hideURLbar() {
         window.scrollTo(0, 1);
     }
-  
-  
-  
-  
-  
 
 
 
@@ -52,6 +51,7 @@ export class BaseComponent2 implements OnInit {
     this.authService.getAuthUserByToken()
                     .then((retour) => {
                       that.currentUser = retour[0]['user'] as User;
+                      console.log(that.currentUser);
                     })
   }
   disconnect() {
@@ -60,8 +60,9 @@ export class BaseComponent2 implements OnInit {
                     .then((retour) => {
                         that.tokenId = retour[0]['id'];
                         this.authService.removeAuthToken(this.tokenId);
+                        localStorage.removeItem('auth-tokens');
                         delete this.currentUser;
-                        //location.reload();
+                        location.reload();
                     })
   }
   /*Fin a voir apres*/

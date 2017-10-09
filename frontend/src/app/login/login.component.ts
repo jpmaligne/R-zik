@@ -3,7 +3,8 @@ import { AuthService } from '../services/index';
 import { URLSearchParams, Response, Http, Headers } from '@angular/http';
 
 @Component({
-  templateUrl: '../views/login.component.html',
+  selector: 'app-login',
+  templateUrl: './login.component.html',
   //styleUrls: ['../styles/login.component.css'],
   providers: [AuthService]
 })

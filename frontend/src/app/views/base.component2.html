@@ -129,23 +129,12 @@
                     </ul>
                 </div>
                 <div class="col-md-3 login-pop">
-                    <div id="loginpop"> <a href="#" id="loginButton"><span>Se connecter <i class="arrow glyphicon glyphicon-chevron-right"></i></span></a><a class="top-sign" href="#" data-toggle="modal" data-target="#myModal5"><i class="fa fa-sign-in"></i></a>
-                        <div id="loginBox">
-                            <form action="#" method="post" id="loginForm">
-                                <fieldset id="body">
-                                    <fieldset>
-                                        <label for="email">Email</label>
-                                        <input type="text" name="email" id="email">
-                                    </fieldset>
-                                    <fieldset>
-                                        <label for="password">Mot de passe</label>
-                                        <input type="password" name="password" id="password">
-                                    </fieldset>
-                                    <input type="submit" id="login" value="Connexion">
-                                </fieldset>
-                                <span><a href="#">Mot de passe oublié?</a></span>
-                            </form>
-                        </div>
+                    <div *ngIf="!currentUser">
+                        <app-login></app-login>
+                    </div>
+                    <div *ngIf="currentUser">
+                        <span>Hello {{currentUser.firstname}}</span>
+                        <button (click)="disconnect()">Disconnect</button>
                     </div>
                 </div>
 
@@ -158,131 +147,19 @@
             <!-- //header-ends -->
             <!-- /w3l-agileits -->
             <!-- //header-ends -->
-            <div id="page-wrapper">
-                <div class="inner-content">
-
-                    <div class="music-left">
-                        <!--banner-section-->
-                        <div class="banner-section">
-                            <div class="banner">
-                                <div class="callbacks_container">
-                                    <ul class="rslides callbacks callbacks1" id="slider4">
-                                        <li>
-                                            <div class="banner-img">
-                                                <img src="../assets/RZik-front/images/11.jpg" class="img-responsive" alt="">
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="banner-img">
-                                                <img src="../assets/RZik-front/images/22.jpg" class="img-responsive" alt="">
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="banner-img">
-                                                <img src="../assets/RZik-front/images/33.jpg" class="img-responsive" alt="">
-                                            </div>
-                                            <!-- /w3layouts-agileits -->
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                        </div>
-                        <!--albums-->
-
-                        <div class="albums second">
-                            <div class="tittle-head">
-                                <h3 class="tittle">Top Artistes</h3>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="artiste-wrapper">
-                                <div class="col-md-3 content-grid">
-                                    <a href="single.html"><img src="../assets/RZik-front/images/v11.jpg" title="allbum-name"></a>
-                                    <div class="play"><img src="http://cdn1.iconfinder.com/data/icons/flavour/button_play_blue.png" /> </div>
-                                </div>
-                                <div class="col-md-3 content-grid">
-                                    <a href="single.html"><img src="../assets/RZik-front/images/v22.jpg" title="allbum-name"></a>
-                                </div>
-                                <div class="col-md-3 content-grid">
-                                    <a href="single.html"><img src="../assets/RZik-front/images/v33.jpg" title="allbum-name"></a>
-                                </div>
-                                <div class="col-md-3 content-grid last-grid">
-                                    <a href="single.html"><img src="../assets/RZik-front/images/v44.jpg" title="allbum-name"></a>
-                                </div>
-                                <div class="col-md-3 content-grid">
-                                    <a href="single.html"><img src="../assets/RZik-front/images/v55.jpg" title="allbum-name"></a>
-                                </div>
-                                <div class="col-md-3 content-grid">
-                                    <a href="single.html"><img src="../assets/RZik-front/images/v66.jpg" title="allbum-name"></a>
-                                </div>
-                                <div class="col-md-3 content-grid">
-                                    <a href="single.html"><img src="../assets/RZik-front/images/v11.jpg" title="allbum-name"></a>
-                                </div>
-                                <div class="col-md-3 content-grid last-grid">
-                                    <a href="single.html"><img src="../assets/RZik-front/images/v22.jpg" title="allbum-name"></a>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="itemsContainer">
-                                <div class="image"> <a href="#">  <img src="http://www.itsalif.info/blogfiles/video-play/vthumb.jpg" /> </a></div>
-                                <div class="play"><img src="http://cdn1.iconfinder.com/data/icons/flavour/button_play_blue.png" /> </div>
-                            </div>
-                        </div>
-                        <!--//discover-view-->
-                    </div>
-                    <!--//music-left-->
-
-                    <div class="albums second">
-                        <div class="tittle-head">
-                            <h3 class="tittle">Top Artistes</h3>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="artiste-wrapper">
-                            <div class="col-md-3 content-grid">
-                                <a href="single.html"><img src="../assets/RZik-front/images/v11.jpg" title="allbum-name"></a>
-                            </div>
-                            <div class="col-md-3 content-grid">
-                                <a href="single.html"><img src="../assets/RZik-front/images/v22.jpg" title="allbum-name"></a>
-                            </div>
-                            <div class="col-md-3 content-grid">
-                                <a href="single.html"><img src="../assets/RZik-front/images/v33.jpg" title="allbum-name"></a>
-                            </div>
-                            <div class="col-md-3 content-grid last-grid">
-                                <a href="single.html"><img src="../assets/RZik-front/images/v44.jpg" title="allbum-name"></a>
-                            </div>
-                            <div class="col-md-3 content-grid">
-                                <a href="single.html"><img src="../assets/RZik-front/images/v55.jpg" title="allbum-name"></a>
-                            </div>
-                            <div class="col-md-3 content-grid">
-                                <a href="single.html"><img src="../assets/RZik-front/images/v66.jpg" title="allbum-name"></a>
-                            </div>
-                            <div class="col-md-3 content-grid">
-                                <a href="single.html"><img src="../assets/RZik-front/images/v11.jpg" title="allbum-name"></a>
-                            </div>
-                            <div class="col-md-3 content-grid last-grid">
-                                <a href="single.html"><img src="../assets/RZik-front/images/v22.jpg" title="allbum-name"></a>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-
-                    </div>
-                    <!--//discover-view-->
-                </div>
-                    <!--//music-left-->
-                    <!--body wrapper start-->
-
-                    <div class="review-slider">
-                    </div>
+            
+            <div class="content-wrapper">
+                <router-outlet></router-outlet>
             </div>
-        </div>
-                <!--body wrapper end-->
-                <!-- /w3l-agile -->
+            <!--body wrapper end-->
+            <!-- /w3l-agile -->
             <!--body wrapper end-->
             <div class="footer">
                 <div class="footer-grid">
                     <p>R-zik Footer</p>
                 </div>
             </div>
+        </div>
         
 
 

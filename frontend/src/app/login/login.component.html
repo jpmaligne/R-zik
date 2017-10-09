@@ -1,0 +1,18 @@
+<div id="loginpop"> <a href="#" id="loginButton"><span>Se connecter <i class="arrow glyphicon glyphicon-chevron-right"></i></span></a><a class="top-sign" href="#" data-toggle="modal" data-target="#myModal5"><i class="fa fa-sign-in"></i></a>
+    <div id="loginBox">
+        <div id="loginForm">
+            <fieldset id="body">
+                <fieldset>
+                    <label for="email">Email ou login</label>
+                    <input [(ngModel)]="login" />
+                </fieldset>
+                <fieldset>
+                    <label for="password">Mot de passe</label>
+                    <input [(ngModel)]="password" />
+                </fieldset>
+                <input type="button" id="login" (click)="doLogin()" value="Connexion" />
+            </fieldset>
+            <span><a href="#">Mot de passe oublié?</a></span>
+            </div>
+    </div>
+</div>

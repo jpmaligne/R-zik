@@ -2,15 +2,17 @@
     <div id="loginBox">
         <div id="loginForm">
             <fieldset id="body">
-                <fieldset>
-                    <label for="email">Email ou login</label>
-                    <input [(ngModel)]="login" />
-                </fieldset>
-                <fieldset>
-                    <label for="password">Mot de passe</label>
-                    <input [(ngModel)]="password" type="password" />
-                </fieldset>
-                <input type="button" id="login" (click)="doLogin()" value="Connexion" />
+                <form action="#">
+                    <fieldset>
+                        <label for="email">Email ou login</label>
+                        <input name="login" [(ngModel)]="login" />
+                    </fieldset>
+                    <fieldset>
+                        <label for="password">Mot de passe</label>
+                        <input name="password" [(ngModel)]="password" type="password" />
+                    </fieldset>
+                    <input type="submit" id="login" (click)="doLogin()" value="Connexion" />
+                </form>
             </fieldset>
             <span><a href="#">Mot de passe oublié?</a></span>
             </div>

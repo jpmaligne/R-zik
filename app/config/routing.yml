@@ -1,7 +1,3 @@
-app_song:
-    resource: "@AppBundle/Controller/SongController.php"
-    type:     annotation
-
 users:
     type: rest
     resource: '@AppBundle/Controller/UserController.php'

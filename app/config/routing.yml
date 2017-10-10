@@ -4,3 +4,6 @@ users:
 auth-tokens:
     type: rest
     resource: '@AppBundle/Controller/AuthTokenController.php'
+song:
+    type: rest
+    resource: '@AppBundle/Controller/SongController.php'

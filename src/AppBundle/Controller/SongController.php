@@ -28,7 +28,7 @@ class SongController extends Controller
     }
     
     /**
-     * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"song"})
+     * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"song", "user"})
      * @Rest\Get("/song/{song_id}")
      */
     public function getSongAction(Request $request)

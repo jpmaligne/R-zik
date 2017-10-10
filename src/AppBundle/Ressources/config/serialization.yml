@@ -52,3 +52,14 @@ AppBundle\Entity\Song:
             groups: ['song']
         profile_id:
             groups: ['song']
+
+AppBundle\Entity\Playlist:
+    attributes:
+        id:
+            groups: ['playlist']
+        title:
+            groups: ['playlist']
+        description:
+            groups: ['playlist']
+        user_id:
+            groups: ['playlist']

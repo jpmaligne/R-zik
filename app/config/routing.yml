@@ -10,3 +10,6 @@ song:
 playlist:
     type: rest
     resource: '@AppBundle/Controller/PlaylistController.php'
+playlistsong:
+    type: rest
+    resource: '@AppBundle/Controller/PlaylistSongController.php'

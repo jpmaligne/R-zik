@@ -50,7 +50,7 @@ class PlaylistController extends Controller
      */
     public function postPlaylistAction(Request $request)
     {
-        $playlist= new Playlist();
+        $playlist = new Playlist();
         $form = $this->createForm(PlaylistType::class, $playlist, ['csrf_protection' => false, 'validation_groups'=>['Default', 'New']]);
         
         $form->submit($request->request->all());
@@ -116,7 +116,7 @@ class PlaylistController extends Controller
     
     /**
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
-     * @Rest\Delete("/song/{id}")
+     * @Rest\Delete("/playlist/{id}")
      */
     public function removePlaylistAction(Request $request)
     {

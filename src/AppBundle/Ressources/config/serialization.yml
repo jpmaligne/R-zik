@@ -63,3 +63,12 @@ AppBundle\Entity\Playlist:
             groups: ['playlist']
         user_id:
             groups: ['playlist']
+
+AppBundle\Entity\PlaylistSong:
+    attributes:
+        id:
+            groups: ['playlistsong']
+        song_id:
+            groups: ['playlistsong']
+        playlist_id:
+            groups: ['playlistsong']

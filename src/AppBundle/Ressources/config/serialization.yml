@@ -23,3 +23,32 @@ AppBundle\Entity\AuthToken:
             groups: ['auth-token']
         user:
             groups: ['auth-token']
+
+AppBundle\Entity\Song:
+    attributes:
+        id:
+            groups: ['song']
+        title:
+            groups: ['song']
+        description:
+            groups: ['song']
+        photo:
+            groups: ['song']
+        artist:
+            groups: ['song']
+        composer:
+            groups: ['song']
+        explicit_content:
+            groups: ['song']
+        download_authorization:
+            groups: ['song']
+        created_at:
+            groups: ['song']
+        updated_at:
+            groups: ['song']
+        length:
+            groups: ['song']
+        type_id:
+            groups: ['song']
+        profile_id:
+            groups: ['song']

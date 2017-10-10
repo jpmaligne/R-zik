@@ -1,6 +1,13 @@
+app_song:
+    resource: "@AppBundle/Controller/SongController.php"
+    type:     annotation
+
 users:
     type: rest
     resource: '@AppBundle/Controller/UserController.php'
 auth-tokens:
     type: rest
     resource: '@AppBundle/Controller/AuthTokenController.php'
+song:
+    type: rest
+    resource: '@AppBundle/Controller/SongController.php'

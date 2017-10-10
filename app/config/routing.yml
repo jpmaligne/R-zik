@@ -7,3 +7,6 @@ auth-tokens:
 song:
     type: rest
     resource: '@AppBundle/Controller/SongController.php'
+playlist:
+    type: rest
+    resource: '@AppBundle/Controller/PlaylistController.php'

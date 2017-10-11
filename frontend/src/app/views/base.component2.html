@@ -106,9 +106,9 @@
                     <div *ngIf="!currentUser">
                         <app-login></app-login>
                     </div>
-                    <div *ngIf="currentUser">
-                        <span>Hello {{currentUser.firstname}}</span>
-                        <button (click)="disconnect()">Disconnect</button>
+                    <div class="login-pop-wrapper" *ngIf="currentUser">
+                        <span class="login-pop-text">Hello {{currentUser.firstname}}</span>
+                        <button id="disconnectButton" (click)="disconnect()">Disconnect</button>
                     </div>
                 </div>
 
@@ -121,7 +121,7 @@
             <!-- //header-ends -->
             <!-- /w3l-agileits -->
             <!-- //header-ends -->
-            
+
             <div class="content-wrapper">
                 <router-outlet></router-outlet>
             </div>
@@ -134,7 +134,7 @@
                 </div>
             </div>
         </div>
-        
+
 
 
 

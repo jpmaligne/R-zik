@@ -77,6 +77,9 @@ En suivant le schema suivant on évitera les conflits :
     Aller sur master et le Pull (encore)
     Retourner sur la branch de travail et push sur master
 
+### En plus
+
+Pour le développement il faut changer la route en fontion de votre config dans frontend/src/environments/environment.ts
 
 Force & Honneur
 May the force be with you

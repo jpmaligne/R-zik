@@ -107,7 +107,8 @@
                         <app-login></app-login>
                     </div>
                     <div class="login-pop-wrapper" *ngIf="currentUser">
-                        <span class="login-pop-text">Hello {{currentUser.firstname}}</span>
+                        <a href="/myaccount">Mon compte</a>
+                        <!-- <span class="login-pop-text">Hello {{currentUser.firstname}}</span> -->
                         <button id="disconnectButton" (click)="disconnect()">Disconnect</button>
                     </div>
                 </div>

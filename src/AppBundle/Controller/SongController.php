@@ -65,7 +65,7 @@ class SongController extends Controller
             return $form;
         }
     }
-    
+
     /**
      * @Rest\View()
      * @Rest\Put("/song/{id}")
@@ -131,7 +131,23 @@ class SongController extends Controller
             $em->flush();
         }
     }
-    
+
+    /**
+    * @Rest\View(statusCode=Response::HTTP_OK)
+    * @Rest\Post("/song/uploadFile")
+    */
+   public function postUploadFileAction(Request $request)
+   {
+       $retour = "";
+       /* @var \Symfony\Component\HttpFoundation\File\File $value */
+       foreach ($_FILES as $cle => $value){
+           $path = "musicUpload/".$cle.".mp3";
+           $retour = $cle.".mp3";
+           move_uploaded_file($value['tmp_name'], $path);
+       }
+       return $retour;
+   }
+
     private function songNotFound()
     {
         throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Song not found');

@@ -2,7 +2,7 @@
 #/app/config/parameters.yml
 #/build/
 #/phpunit.xml
-#/var/*
+./var/*
 #!/var/cache
 #/var/cache/*
 #!var/cache/.gitkeep
@@ -16,7 +16,7 @@
 /vendor/
 /node_modules/
 #/web/bundles/
-#/.idea/
+.idea/
 #/app/config
 
 

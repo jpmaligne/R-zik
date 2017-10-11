@@ -57,6 +57,11 @@ class User implements UserInterface
 
     private $plainPassword;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $password_live;
+
     public function getId()
     {
         return $this->id;
@@ -115,6 +120,16 @@ class User implements UserInterface
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+
+    public function getPasswordLive()
+    {
+        return $this->password_live;
+    }
+
+    public function setPasswordLive($password_live)
+    {
+        $this->password = $password_live;
     }
 
     public function getRoles()

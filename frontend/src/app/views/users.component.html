@@ -1,16 +1,21 @@
-<h1>
-    Liste des users
-</h1>
-<table>
-    <tr>
-        <th>Lastname</th>
-        <th>Firstname</th>
-        <th>Mail</th>
-    </tr>
-    <tr *ngFor="let user of users">
-        <td>{{ user.lastname }}</td>
-        <td>{{ user.firstname }}</td>
-        <td>{{ user.email}}</td>
-        <td><a href="/user/{{ user.id}}">See profile</a></td>
-    </tr>
+<div class="header-container">
+    <div class="txt-container">
+        <p>Liste des artistes</p>
+    </div>
+</div>
+<table class="container">
+	<thead>
+		<tr>
+			<th><h1>Nom</h1></th>
+			<th><h1>Prénom</h1></th>
+			<th><h1>Afficher</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let user of users">
+            <td>{{ user.lastname }}</td>
+            <td>{{ user.firstname }}</td>
+            <td><a href="/user/{{ user.id}}">Voir profil</a></td>
+		</tr>
+	</tbody>
 </table>

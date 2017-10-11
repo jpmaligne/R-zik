@@ -2400,6 +2400,16 @@ p.email span:hover {
 
 /*---Forbidden---*/
 
+.list-user-wrapper {
+    background: #cacaca;
+    box-shadow: 2px 2px 5px grey;
+    border: 1px solid grey;
+    padding: 20px;
+    margin: 20px;
+
+}
+/* list user */
+
 /*---User Profil---*/
 
 .user-wrapper {

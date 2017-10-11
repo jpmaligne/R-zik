@@ -1,0 +1,16 @@
+.user_title{
+    margin: 15px 0px;
+    text-transform: capitalize;
+    text-align: center;
+}
+.photo_region{
+    width: 250px;
+}
+.img_profil{
+    margin: 25px 50px;
+    width: 100%;
+}
+.live_button{
+    margin: 0 50px;
+    width: 100%;
+}

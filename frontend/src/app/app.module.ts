@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -44,11 +46,13 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     HomeComponent,
     UserComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForbiddenComponent,
+    NotFoundComponent,
   ],
   providers: [],
   bootstrap: [BaseComponent2]
 })
-export class AppModule { 
+export class AppModule {
 
 }

@@ -1308,6 +1308,14 @@ i.arrow {
     color: #fff;
 }
 
+.login-pop-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+.login-pop-text {
+    color: white;
+}
 
 /* Login Button */
 
@@ -1318,6 +1326,28 @@ i.arrow {
     cursor: pointer;
 }
 
+/* disconnect Button */
+
+#disconnectButton {
+    display: block;
+    color: #cacaca;
+    background: #111;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border: 1px solid #111;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    outline: none;
+}
 
 /* Login Box */
 
@@ -2357,6 +2387,34 @@ p.email span:hover {
     -moz-border-radius: 4px;
 }
 
+/*---Forbidden---*/
+
+.forbidden {
+    height: 250px;
+    background: #cacaca;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px grey;
+    border: 1px solid grey;
+}
+
+/*---Forbidden---*/
+
+/*---User Profil---*/
+
+.user-wrapper {
+    background: #cacaca;
+    box-shadow: 2px 2px 5px grey;
+    border: 1px solid grey;
+    padding: 20px;
+    margin: 20px;
+}
+
+.user-header span {
+    font-weight: 600;
+}
+
+/*---User Profil---*/
 
 /*---browse-grid-----*/
 
@@ -2651,7 +2709,7 @@ li.list-group-item1 {
     font-weight: normal;
     background: none;
     border: 1px solid #E6E4E4;
-    color: #D2D1D1;
+    color: black;
     outline: none;
     font-size: 14px;
     margin-top: 11px;
@@ -2664,6 +2722,10 @@ li.list-group-item1 {
     -o-border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
+}
+
+::placeholder {
+  color: #cacaca;
 }
 
 .sign-right h4 {
@@ -3957,9 +4019,7 @@ a.not {
         top: -22px;
     }
     .toggle-btn {
-        font-size: 17px;
-        padding: 9px 0 0;
-        margin: 0.8em 0 0 1.5em;
+        display: none;
     }
     a.not {
         font-size: 0.3em;

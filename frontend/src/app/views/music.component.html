@@ -1,0 +1,25 @@
+<div class="header-container">
+    <div class="txt-container">
+        <p>Vos musiques</p>
+    </div>
+</div>
+<table class="container">
+	<thead>
+		<tr>
+			<th><h1>Artiste</h1></th>
+			<th><h1>Titre</h1></th>
+			<th><h1>Lecture</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let user of users">
+            <td></td>
+            <td></td>
+            <td></td>
+		</tr>
+	</tbody>
+</table>
+
+<app-forbidden *ngIf="!currentUser">
+    
+</app-forbidden>

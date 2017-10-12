@@ -1,12 +1,21 @@
 <div *ngIf="currentUser">
   Hello {{ currentUser.firstname }}
 
-  <div>Upload File:
+  <div>
+    <h2>Upload File</h2>
       <input placholder="Song Title" name="title" [(ngModel)]="songTitle" />
       <textarea name="description" [(ngModel)]="songDescription" placeholder="Song Description"></textarea>
       <input type="file" #fileInput placeholder="Upload file..." />
       Explicit Content : <input type="checkbox" name="explicitContent" [(ngModel)]="explicitContent"/>
       Download Authorization : <input type="checkbox" name="downloadAuthorization" [(ngModel)]="downloadAuthorization"/>
       <button (click)="upload()">Upload</button>
+  </div>
+
+  <div class="row">
+    <h2>My Songs</h2>
+    <div *ngFor="let song of mySongs; let i = index" class="col-md-2 songCadre">
+      <span class="songTitle">{{ song.title }}</span>
+      <button (click)='changePlayerSource(song.title)'>Play</button>
+    </div>
   </div>
 </div>

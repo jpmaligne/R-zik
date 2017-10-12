@@ -1,0 +1,10 @@
+div.songCadre{
+    text-align: center;
+}
+.songTitle{
+    display: block;
+}
+.songCadre{
+    border: 1px solid;
+    padding: 5px 0;
+}

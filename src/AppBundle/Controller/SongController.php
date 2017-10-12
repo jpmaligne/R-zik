@@ -44,7 +44,26 @@ class SongController extends Controller
         
         return $song;
     }
-    
+
+    /**
+    * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"song", "user"})
+    * @Rest\Get("/songs/user/{user_id}")
+    */
+    public function getSongsByUserAction(Request $request)
+    {
+        $user_id = $request->get('user_id');
+        $songs = $this->get('doctrine.orm.entity_manager')
+            ->getRepository('AppBundle:Song')
+            ->findBy(array('artist' => $user_id));
+        /* @var $song Song */
+
+        if (empty($songs)) {
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Song not found');
+        }
+
+        return $songs;
+    }
+
     /**
      * @Rest\View(statusCode=Response::HTTP_CREATED)
      * @Rest\Post("/song")

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
+import { AuthService } from '../services/auth.service';
 import { environment } from '../../environments/environment';   // Conf file
-
+import { Song } from '../models/song';
 import 'rxjs/add/operator/toPromise'
 
 @Injectable()
 export class SongService {
   private songUrl = environment.apiEndpoint + 'song'
-  constructor(private http: Http) {}
+  private songsUrl = environment.apiEndpoint + 'songs'
+  constructor(private http: Http, private authService: AuthService) {}
 
   uploadFile(data): Promise<any>{
     var options = this.initOptionHeaderfile();
@@ -23,6 +25,14 @@ export class SongService {
                 .then(response => response.json())
                 .catch(this.handleError);
     }
+
+  getUserSongs(user_id): Promise<Song[]> {
+    return this.http
+               .get(this.songsUrl + "/user/" + user_id, this.authService.initOptionHeader())
+               .toPromise()
+               .then(response => response.json())
+               .catch(this.handleError);
+  }
 
   private initOptionHeaderfile(){
     let headers = new Headers();

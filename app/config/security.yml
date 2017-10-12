@@ -18,6 +18,11 @@ security:
             methods: [POST]
             pattern: ^/users
             security: false
+        
+        song:
+            methods: [POST]
+            pattern: ^/song
+            security: false
 
         main:
             pattern: ^/

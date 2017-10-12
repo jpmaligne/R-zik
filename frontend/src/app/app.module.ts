@@ -13,6 +13,7 @@ import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'myaccount',
+        component: MyaccountComponent
       }
     ])
   ],
@@ -49,6 +54,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RegisterComponent,
     ForbiddenComponent,
     NotFoundComponent,
+    MyaccountComponent
   ],
   providers: [],
   bootstrap: [BaseComponent2]

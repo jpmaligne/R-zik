@@ -43,7 +43,7 @@ class Song
      * @ORM\Column(name="photo", type="string", length=500, nullable=true)
      */
     private $photo;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @var User
@@ -199,7 +199,6 @@ class Song
     {
         return $this->artist;
     }
-    
 
     /**
      * Set explicitContent

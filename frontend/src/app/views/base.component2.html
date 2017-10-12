@@ -86,7 +86,7 @@
                 <div class="col-md-5 player">
                     <div class="audio-player">
                         <audio id="audio-player" controls="controls">
-                            <source src="http://localhost:8000/radio-general" type="audio/ogg" />
+                            <source id="audio-player-source" src="" type="audio/mpeg" />
                             <!--<source src="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Let%20Me%20%28Prod%202oolman%29.mp3" type="audio/mpeg" />-->
                         </audio>
                     </div>
@@ -107,7 +107,8 @@
                         <app-login></app-login>
                     </div>
                     <div class="login-pop-wrapper" *ngIf="currentUser">
-                        <span class="login-pop-text">Hello {{currentUser.firstname}}</span>
+                        <a href="/myaccount">Mon compte</a>
+                        <!-- <span class="login-pop-text">Hello {{currentUser.firstname}}</span> -->
                         <button id="disconnectButton" (click)="disconnect()">Disconnect</button>
                     </div>
                 </div>

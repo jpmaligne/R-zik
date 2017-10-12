@@ -1,0 +1,16 @@
+<h1>{{ title }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <td [ngStyle]="{'display': 'inline-block', 'margin-right': '20px'}">ID</td>
+            <td [ngStyle]="{'display': 'inline-block', 'margin-right': '20px'}">Titre de la playlist</td>
+            <td>Description de la playlist</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let playlist of playlists">
+            <td [ngStyle]="{'display': 'inline-block', 'margin-right': '30px'}">{{ playlist.id }}</td> <td [ngStyle]="{'display': 'inline-block', 'margin-right': '20px'}">{{ playlist.title }}</td> <td>{{ playlist.description }}</td>
+        </tr>
+    </tbody>
+</table>

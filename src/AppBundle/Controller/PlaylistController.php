@@ -14,13 +14,13 @@ class PlaylistController extends Controller
 {
     /**
      * @Rest\View()
-     * @Rest\Get("/playlists")
+     * @Rest\Get("/playlists/{user_id}")
      */
     public function getPlaylistsAction(Request $request)
     {
         $playlists = $this->get('doctrine.orm.entity_manager')
             ->getRepository('AppBundle:Playlist')
-            ->findAll();
+            ->findBy(['user' => $request->get('user_id')]);
         /* @var $playlists Playlist[] */
         
         return $playlists;

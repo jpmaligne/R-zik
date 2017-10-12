@@ -6,6 +6,7 @@ import { BaseComponent } from './components/base.component';
 import { BaseComponent2 } from './components/base.component2';
 import { UsersComponent } from './components/users.component';
 import { LoginComponent } from './login/login.component';
+import { PlaylistComponent } from './components/playlist.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
@@ -34,6 +35,10 @@ import { RegisterComponent } from './register/register.component';
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'playlist',
+        component: PlaylistComponent
       }
     ])
   ],
@@ -44,6 +49,7 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     HomeComponent,
     UserComponent,
+    PlaylistComponent,
     RegisterComponent
   ],
   providers: [],

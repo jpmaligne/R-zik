@@ -2733,10 +2733,9 @@ li.list-group-item1 {
     -moz-border-radius: 4px;
 }
 
-::placeholder {
-  color: #cacaca;
-}
-
+input::placeholder {
+    color: rgb(136, 136, 136) !important;
+  }
 .sign-right h4 {
     color: #48cfc1;
     font-size: 12px;

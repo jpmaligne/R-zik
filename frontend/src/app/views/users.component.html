@@ -3,8 +3,7 @@
         <p>Liste des artistes</p>
     </div>
 </div>
-<app-forbidden *ngIf="!currentUser">
-	<table class="container">
+	<table class="container" *ngIf="currentUser">
 		<thead>
 			<tr>
 				<th><h1>Nom</h1></th>
@@ -20,4 +19,5 @@
 			</tr>
 		</tbody>
 	</table>
-</app-forbidden>
+	<app-forbidden *ngIf="!currentUser">
+	</app-forbidden>

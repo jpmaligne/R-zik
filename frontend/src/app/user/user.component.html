@@ -1,7 +1,30 @@
 <h1 class="user_title" *ngIf="user">
-  {{user.firstname}} {{user.lastname}} profil page
+  {{user.firstname}} {{user.lastname}} artist page
 </h1>
-<div class="photo_region">
-  <img class="img_profil" src="http://dk6kcyuwrpkrj.cloudfront.net/wp-content/uploads/sites/45/2014/05/avatar-blank.jpg">
-  <button type="button" class="btn btn-danger live_button" (click)='changePlayerSource()'>Ecouter le live</button>
+<div class="photo_region row">
+  <div class="col-md-4">
+    <img class="img_profil" src="http://dk6kcyuwrpkrj.cloudfront.net/wp-content/uploads/sites/45/2014/05/avatar-blank.jpg">
+    <button type="button" class="btn btn-danger live_button" (click)='changePlayerSource()'>Ecouter le live</button>
+  </div>
+  <div class="col-md-8">
+    <h2>My Songs</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Play</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of mySongs; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{ song.title }}</td>
+          <td>{{ song.description }}</td>
+          <td><button class="btn btn-default" (click)='changePlayerSourceMusic(song.title)'>Play</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

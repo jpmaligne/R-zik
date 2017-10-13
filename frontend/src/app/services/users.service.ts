@@ -21,7 +21,7 @@ export class UsersService{
                     .then(response => response.json())
                     .catch(this.handleError);
         }
-    
+
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error);              // For demo purposes only
         return Promise.reject(error.message || error);

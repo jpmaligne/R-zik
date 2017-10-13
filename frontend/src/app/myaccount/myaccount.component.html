@@ -1,21 +1,48 @@
 <div *ngIf="currentUser">
-  Hello {{ currentUser.firstname }}
+  <h1>Hello {{ currentUser.firstname }}</h1>
 
-  <div>
+  <div class="row">
     <h2>Upload File</h2>
-      <input placholder="Song Title" name="title" [(ngModel)]="songTitle" />
-      <textarea name="description" [(ngModel)]="songDescription" placeholder="Song Description"></textarea>
-      <input type="file" #fileInput placeholder="Upload file..." />
-      Explicit Content : <input type="checkbox" name="explicitContent" [(ngModel)]="explicitContent"/>
-      Download Authorization : <input type="checkbox" name="downloadAuthorization" [(ngModel)]="downloadAuthorization"/>
-      <button (click)="upload()">Upload</button>
+      <div class="col-md-4"></div>
+      <div class="cadre-input col-md-4">
+        <textarea class="col-md-12" name="description" [(ngModel)]="songDescription" placeholder="Song Description"></textarea>
+        <button class="col-md-12 btn btn-primary" (click)="openFileInput()">Upload File</button>
+        <input placholder="Song Title" name="title" [(ngModel)]="songTitle" class="col-md-12"/>
+        <input class="col-md-12" style="display: none;" type="file" #fileInput id="fileInput" placeholder="Upload file..." (change)="setTitle()" />
+        Explicit Content : <input type="checkbox" name="explicitContent" [(ngModel)]="explicitContent"/>
+        Download Authorization : <input type="checkbox" name="downloadAuthorization" [(ngModel)]="downloadAuthorization"/>
+        <button class="col-md-12 btn btn-success" (click)="upload()">Send</button>
+      </div>
+      <div class="col-md-4"></div>
   </div>
 
   <div class="row">
-    <h2>My Songs</h2>
-    <div *ngFor="let song of mySongs; let i = index" class="col-md-2 songCadre">
-      <span class="songTitle">{{ song.title }}</span>
-      <button (click)='changePlayerSource(song.title)'>Play</button>
+    <h2>Your Songs</h2>
+
+    <div class="col-md-12" *ngIf="!mySongs" style="text-align: center;">
+      <p>You don't have any songs yet</p>
+      <p>Upload some !</p>
+
     </div>
+
+    <div class="col-md-12" *ngIf="mySongs">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Play</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let song of mySongs; let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{ song.title }}</td>
+              <td>{{ song.description }}</td>
+              <td><button class="btn btn-default" (click)='changePlayerSource(song.title)'>Play</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
-</div>

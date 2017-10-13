@@ -7,7 +7,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost/projects/R-zik/web/',
+  apiEndpoint: 'http://localhost/R-zik/web/',
   streamEndpoint: 'http://localhost:8000/',
   musicFolder: 'musicUpload/'
 };

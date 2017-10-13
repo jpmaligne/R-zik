@@ -56,6 +56,14 @@ export class MyaccountComponent implements OnInit {
     }
   }
 
+  setTitle() {
+    let fileBrowser = this.fileInput.nativeElement;
+    if (fileBrowser.files && fileBrowser.files[0]) {
+      let file: File = fileBrowser.files[0];
+      this.songTitle = file.name.split(".")[0].replace(/\s+/g, '');;
+    }
+  }
+
   postSong() {
     //TODO TYPE OF SONG
     if(this.explicitContent === undefined) {
@@ -73,6 +81,10 @@ export class MyaccountComponent implements OnInit {
                   'typeId': 0,
                   'length': this.length }
     this.songService.postSong(this.data);
+  }
+
+  openFileInput() {
+    document.getElementById('fileInput').click();
   }
 
   changePlayerSource(songTitle){

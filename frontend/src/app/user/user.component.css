@@ -3,14 +3,22 @@
     text-transform: capitalize;
     text-align: center;
 }
-.photo_region{
-    width: 250px;
-}
 .img_profil{
     margin: 25px 50px;
-    width: 100%;
+    width: 75%;
 }
 .live_button{
     margin: 0 50px;
-    width: 100%;
+    width: 75%;
+}
+
+div.songCadre{
+    text-align: center;
+}
+.songTitle{
+    display: block;
+}
+.songCadre{
+    border: 1px solid;
+    padding: 5px 0;
 }
